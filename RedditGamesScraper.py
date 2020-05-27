@@ -28,4 +28,21 @@ class RedditGamesScraper():
             if (not submission.stickied and (not ("AMA" in submission.title))):
                 if(submission.upvote_ratio > MINIMUM_UPVOTE_RATIO and submission.score > MINIMUM_UPVOTES):
                     submissions.append(submission)
-        return submissions
+
+        submissions = self.getUniqueIDs(submissions)
+        return [sub.permalink for sub in submissions]
+
+    def getUniqueIDs(self, submissions):
+        with open('ids.json') as submission_ids:
+            data = json.load(submission_ids)
+            curr_ids = data['ids']
+
+            return_subs = []
+            for sub in submissions:
+                if sub.id not in curr_ids:
+                    curr_ids.append(sub.id)
+                    return_subs.append(sub)
+            data.update({"ids": curr_ids})
+            json.dumps(data)
+
+        return return_subs
