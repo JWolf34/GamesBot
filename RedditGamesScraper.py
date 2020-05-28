@@ -30,7 +30,33 @@ class RedditGamesScraper():
                     submissions.append(submission)
 
         submissions = self.getUniqueIDs(submissions)
-        return [sub.permalink for sub in submissions]
+        return [sub for sub in submissions]
+
+    def getUniqueIDs(self, submissions):
+
+        f = open('ids.txt', 'r')
+        data = f.readlines()
+        curr_ids = []
+        for id in data:
+            curr_ids.append(id[:-1])
+
+        return_subs = []
+        for sub in submissions:
+            if sub.id not in curr_ids:
+                curr_ids.append(sub.id)
+                return_subs.append(sub)
+
+        with open('ids.txt', 'w') as f:
+            for id in curr_ids:
+                f.write("%s\n" % id)
+
+        return return_subs
+
+
+'''
+
+    JSON Version of getUniqueIDs, will return to this later
+
 
     def getUniqueIDs(self, submissions):
         with open('ids.json') as submission_ids:
@@ -46,3 +72,4 @@ class RedditGamesScraper():
             json.dumps(data)
 
         return return_subs
+        '''
