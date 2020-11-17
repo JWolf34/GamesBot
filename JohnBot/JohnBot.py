@@ -43,6 +43,6 @@ async def getPCSales():
 
     channel = client(777046244127408139)
 
-client.loop.create_task(getGameNews(0.78, 850, ))
-client.loop.create_task(getPCSales())
+client.loop.create_task(getGameNews())
+#client.loop.create_task(getPCSales())
 client.run(TOKEN)
