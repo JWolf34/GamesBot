@@ -27,7 +27,7 @@ async def getGameNews():
         channel = client.get_channel(710714643437453315)
         games = RedditGamesScraper.RedditGamesScraper()
         while not client.is_closed():
-            links = games.getLinks()
+            links = games.getLinks(0.78, 850)
             for link in links:
                 embed = discord.Embed(
                     title=link.title, url="https://reddit.com" + link.permalink)
@@ -35,9 +35,9 @@ async def getGameNews():
                 await asyncio.sleep(1)
             await asyncio.sleep(300)
     except Exception as e:
-        channel.send("I can't send games news right now :( \n" + e)
+        channel.send("Could not crawl (General Exception): " + e.toString())
 
-
+    channel = client(777046244127408139)
 
 
 client.loop.create_task(getGameNews())
