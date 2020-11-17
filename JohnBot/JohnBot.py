@@ -27,7 +27,7 @@ async def getGameNews():
         channel = client.get_channel(710714643437453315)
         games = RedditGamesScraper.RedditGamesScraper()
         while not client.is_closed():
-            links = games.getLinks(0.78, 850)
+            links = games.getLinks(850, 0.78)
             for link in links:
                 embed = discord.Embed(
                     title=link.title, url="https://reddit.com" + link.permalink)

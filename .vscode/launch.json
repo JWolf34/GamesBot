@@ -8,8 +8,8 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceRoot}/GamesBot/GamesBot.py",
-            "cwd": "${workspaceFolder}/GamesBot",
+            "program": "${workspaceRoot}/JohnBot/JohnBot.py",
+            "cwd": "${workspaceFolder}/JohnBot",
             "console": "integratedTerminal"
         }
     ]
