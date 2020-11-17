@@ -20,7 +20,7 @@ async def on_ready():
     print('Connected!')
 
 
-async def getGamesNews():
+async def getGameNews():
     await client.wait_until_ready()
 
     try:
@@ -37,12 +37,8 @@ async def getGamesNews():
     except Exception as e:
         channel.send("Could not crawl (General Exception): " + e.toString())
 
-
-async def getPCSales():
-    await client.wait_until_ready()
-
     channel = client(777046244127408139)
 
+
 client.loop.create_task(getGameNews())
-#client.loop.create_task(getPCSales())
 client.run(TOKEN)
