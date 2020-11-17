@@ -20,13 +20,13 @@ class RedditGamesScraper():
                                   client_secret=self.secret_key,
                                   user_agent='GamesBot')
 
-    def getLinks(self):
-        games = self.reddit.subreddit("games")
+    def getLinks(self, MIN_UPVOTES, MIN_UPVOTE_RATIO):
+        links = self.reddit.subreddit("games")
         submissions = []
 
-        for submission in games.hot(limit=20):
+        for submission in links.hot(limit=20):
             if (not submission.stickied and (not ("AMA" in submission.title))):
-                if(submission.upvote_ratio > MINIMUM_UPVOTE_RATIO and submission.score > MINIMUM_UPVOTES):
+                if(submission.upvote_ratio > MIN_UPVOTE_RATIO and submission.score > MIN_UPVOTES):
                     submissions.append(submission)
 
         submissions = self.getUniqueIDs(submissions)
