@@ -35,7 +35,7 @@ async def getGameNews():
                 await asyncio.sleep(1)
             await asyncio.sleep(300)
     except Exception as e:
-        channel.send("Could not crawl (General Exception): " + e.toString())
+        channel.send("Could not crawl (General Exception): " + str(e))
 
     channel = client(777046244127408139)
 
